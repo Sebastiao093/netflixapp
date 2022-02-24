@@ -22,6 +22,7 @@ environment:
 
 dependencies:
   bloc: ^8.0.1
+  dio: ^4.0.4
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.0
@@ -55,7 +56,7 @@ flutter:
   fonts:
     - family: Gilroy 
       fonts:
-        - asset: fonts/Gilroy.otf
+        - asset: assets/fonts/Gilroy.ttf
           weight: 500
 
   # An image asset can refer to one or more resolution-specific "variants", see
