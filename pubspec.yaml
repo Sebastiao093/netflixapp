@@ -55,7 +55,7 @@ flutter:
   fonts:
     - family: Gilroy 
       fonts:
-        - asset: fonts/Gilroy.otf
+        - asset: assets/fonts/Gilroy.ttf
           weight: 500
 
   # An image asset can refer to one or more resolution-specific "variants", see
