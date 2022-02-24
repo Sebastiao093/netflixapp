@@ -25,7 +25,7 @@ class AlertInfomativo extends StatelessWidget {
             children: <Widget>[
               Align(
                 alignment: Alignment(1.2, 0),
-                child: FlatButton(
+                child: TextButton(
                   child: Icon(
                     Icons.close,
                     color: Colors.grey,

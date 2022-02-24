@@ -5,7 +5,7 @@ import 'package:netflix_app/ui/widgets/button.dart';
 import 'commons/constants/constants.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+            color: Colors.white,
             image: DecorationImage(
                 image: AssetImage("assets/images/witcher.jpg"),
                 fit: BoxFit.cover)),
@@ -48,35 +48,56 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           margin: EdgeInsets.only(top: 70),
                           height: 50,
-                          child: 
-                            Text(
-                              'Welcome!',
-                              style: TextStyle(color: Colors.white, fontSize: 30, fontFamily: 'Gilroy', fontWeight: FontWeight.bold),textAlign: TextAlign.justify,
-                            ),
+                          child: Text(
+                            'Welcome!',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontFamily: 'Gilroy',
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.justify,
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: 100,
                       ),
-                      ButtonCustom(text: 'Sign up', color: Colors.yellow, func: (){
-                        print('Hola');
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => SeriesPage()));
-                      }),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SeriesPage()));
+                        },
+                        child: Text('Sign Up'),
+                      ),
                       SizedBox(
                         height: 40,
                       ),
-                      ButtonCustom(text: 'Log in', color: Colors.yellow, func: (){
-                      }),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SeriesPage()));
+                        },
+                        child: ButtonCustom(
+                            text: 'Log in', color: Colors.yellow, func: () {}),
+                      ),
                       SizedBox(
                         height: 40,
                       ),
                       Text(
-                          'Forgot password?',
-                          style: TextStyle(color: Colors.white, fontSize: 30, fontFamily: 'Gilroy', decoration: TextDecoration.underline),textAlign: TextAlign.justify,
-                        ),
+                        'Forgot password?',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontFamily: 'Gilroy',
+                            decoration: TextDecoration.underline),
+                        textAlign: TextAlign.justify,
+                      ),
                     ],
                   ),
-                  
                 ],
               ),
             ),
@@ -85,7 +106,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 
   void _onDisplayBottomSheetTiposDocumentos() async {
     await showModalBottomSheet(
@@ -131,23 +151,19 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildBottomNavigationMenu() {
     return Container(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: _widgetInput()
-    );
+        padding: const EdgeInsets.only(bottom: 20), child: _widgetInput());
   }
 
   _widgetInput() {
     return GestureDetector(
-      onTap: () {
-      },
+      onTap: () {},
       child: Container(
         margin: EdgeInsets.only(top: 18, left: 25, right: 25),
         height: 50,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border(
-                bottom: BorderSide(color: Constants.primaryColor))),
+            border: Border(bottom: BorderSide(color: Constants.primaryColor))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
