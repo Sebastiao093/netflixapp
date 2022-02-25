@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_app/ui/bottombar.dart';
-import 'package:netflix_app/ui/series_page.dart';
-import 'package:netflix_app/ui/widgets/button.dart';
 
 import 'commons/constants/constants.dart';
 
@@ -67,10 +65,6 @@ class _HomePageState extends State<HomePage> {
                             side: BorderSide(style: BorderStyle.solid),
                             textStyle: TextStyle(fontFamily: 'Gilroy')),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NavTab()));
                         },
                         child: Text('Sign Up'),
                       ),
@@ -86,10 +80,6 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(30)),
                             textStyle: TextStyle(fontFamily: 'Gilroy')),
                         onPressed: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => NavTab()));
                           _onDisplayBottomSheetInput();
                         },
                         child: Text('Log In'),
@@ -216,15 +206,19 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(30)),
                   textStyle: TextStyle(fontFamily: 'Gilroy')),
               onPressed: () {
-                if((_controllerPass.text == Constants.username && _controllerName.text == Constants.password )|| (_controllerPass.text == Constants.username2 && _controllerName.text == Constants.password2 )){
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => NavTab()));
+                if ((_controllerName.text == Constants.username &&
+                        _controllerPass.text == Constants.password) ||
+                    (_controllerName.text == Constants.username2 &&
+                        _controllerPass.text == Constants.password2)) {
+                  Navigator.pop(context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NavTab()));
                 } else {
-                  showDialog(context: context, builder: (ctx) => (
-                    AlertDialog(title: Text('Email on contraseña incorrectos'))
-                  ));
+                  showDialog(
+                      context: context,
+                      builder: (ctx) => (AlertDialog(
+                          title: Text('Email o contraseña incorrectos'))));
                 }
-                
               },
               child: Text('Log In'),
             ),

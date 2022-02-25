@@ -47,7 +47,9 @@ class _NavTabState extends State<NavTab> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: Icon(Icons.settings_rounded),
             color: Constants.primaryTextColor,
           )

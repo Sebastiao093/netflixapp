@@ -7,10 +7,10 @@ class Constants{
   static const primaryColor = Color(0xFF191919);
   static const secondaryColor = Color(0xFFFFD233);
 
-  static const String username = 'maria';
-  static const String password = 'password';
-  static const String username2 = 'pedro';
-  static const String password2 = '123456';
+  static String username = "maria";
+  static String password = "password";
+  static String username2 = "pedro";
+  static String password2 = "123456";
 
   static final String baseUrl = 'https://image.tmdb.org/t/p/';
 
