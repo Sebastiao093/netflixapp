@@ -4,16 +4,33 @@ class Serie {
   String? description;
   int? voteAverage;
   bool? video;
+  bool? isFavorite;
 
-  Serie({
-    this.title,
-    this.urlImage,
-    this.description,
-    this.voteAverage,
-    this.video,
-  });
+  Serie(
+      {this.title,
+      this.urlImage,
+      this.description,
+      this.voteAverage,
+      this.video,
+      this.isFavorite});
 
-  static Serie fromJson(Map<String, dynamic> json){
+  Serie copyWith({
+    String? title,
+    String? urlImage,
+    String? description,
+    int? voteAverage,
+    bool? video,
+    bool? isFavorite,
+  }) =>
+      Serie(
+          title: title ?? this.title,
+          urlImage: urlImage ?? this.urlImage,
+          description: description ?? this.description,
+          voteAverage: voteAverage ?? this.voteAverage,
+          video: video ?? this.video,
+          isFavorite: isFavorite ?? this.isFavorite);
+
+  static Serie fromJson(Map<String, dynamic> json) {
     Serie serieModel = Serie();
     serieModel.title = json["original_title"];
     serieModel.urlImage = json["poster_path"];

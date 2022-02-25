@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_app/ui/bottombar.dart';
 import 'package:netflix_app/ui/series_page.dart';
 import 'package:netflix_app/ui/widgets/button.dart';
 
@@ -14,13 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             'Welcome!',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Constants.primaryTextColor,
                                 fontSize: 30,
                                 fontFamily: 'Gilroy',
                                 fontWeight: FontWeight.bold),
@@ -67,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SeriesPage()));
+                                  builder: (context) => NavTab()));
                         },
                         child: Text('Sign Up'),
                       ),
@@ -79,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SeriesPage()));
+                                  builder: (context) => NavTab()));
                         },
                         child: ButtonCustom(
                             text: 'Log in', color: Colors.yellow, func: () {}),
@@ -90,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         'Forgot password?',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Constants.primaryTextColor,
                             fontSize: 30,
                             fontFamily: 'Gilroy',
                             decoration: TextDecoration.underline),
