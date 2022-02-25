@@ -1,10 +1,10 @@
 # netflix_app
 
-A new Flutter project.
+A new Netflix app project, test for flutter developer.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a Flutter application. Bringing a new Netflix app
 
 A few resources to get you started if this is your first Flutter project:
 

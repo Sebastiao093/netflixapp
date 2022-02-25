@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_app/ui/series_page.dart';
-import 'package:netflix_app/ui/widgets/button.dart';
+import 'package:netflix_app/ui/bottombar.dart';
 
 import 'commons/constants/constants.dart';
 
@@ -14,14 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
-
+  TextEditingController _controllerName = TextEditingController();
+  TextEditingController _controllerPass = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             'Welcome!',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Constants.primaryTextColor,
                                 fontSize: 30,
                                 fontFamily: 'Gilroy',
                                 fontWeight: FontWeight.bold),
@@ -63,26 +56,33 @@ class _HomePageState extends State<HomePage> {
                         height: 100,
                       ),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Constants.secondaryColor,
+                            minimumSize: Size(250, 50),
+                            shape: RoundedRectangleBorder(
+                                side: BorderSide(),
+                                borderRadius: BorderRadius.circular(30)),
+                            side: BorderSide(style: BorderStyle.solid),
+                            textStyle: TextStyle(fontFamily: 'Gilroy')),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SeriesPage()));
                         },
                         child: Text('Sign Up'),
                       ),
                       SizedBox(
                         height: 40,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SeriesPage()));
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Constants.primaryTextColor,
+                            minimumSize: Size(250, 50),
+                            shape: RoundedRectangleBorder(
+                                side: BorderSide(),
+                                borderRadius: BorderRadius.circular(30)),
+                            textStyle: TextStyle(fontFamily: 'Gilroy')),
+                        onPressed: () {
+                          _onDisplayBottomSheetInput();
                         },
-                        child: ButtonCustom(
-                            text: 'Log in', color: Colors.yellow, func: () {}),
+                        child: Text('Log In'),
                       ),
                       SizedBox(
                         height: 40,
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         'Forgot password?',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Constants.primaryTextColor,
                             fontSize: 30,
                             fontFamily: 'Gilroy',
                             decoration: TextDecoration.underline),
@@ -107,32 +107,28 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _onDisplayBottomSheetTiposDocumentos() async {
+  void _onDisplayBottomSheetInput() async {
     await showModalBottomSheet(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))),
         context: context,
-        backgroundColor: Colors.white,
+        backgroundColor: Constants.primaryColor,
         isDismissible: true,
         builder: (context) {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Center(
-                  child: Container(
-                height: 40,
-                padding: EdgeInsets.symmetric(vertical: 17.0),
-                child: Image.asset("assets/images/img_down.png"),
-              )),
-              Center(
-                  child: Text(
-                "Tipo de identificación",
-                style: TextStyle(
-                    color: Constants.primaryTextColor,
-                    fontFamily: 'Gilroy',
-                    fontSize: 16),
-              )),
-              //searchDireccion(),
+              Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                        height: 40,
+                        padding: EdgeInsets.symmetric(horizontal: 17.0),
+                        child: Icon(Icons.close)),
+                  )),
               Flexible(
                 child: Container(child: _buildBottomNavigationMenu()),
               ),
@@ -140,11 +136,7 @@ class _HomePageState extends State<HomePage> {
           );
         }).then((value) {
       if (value != null) {
-        setState(() {
-          // tipo = value;
-          // tipoController.text = tipo.descripcion;
-          // identificationController.text = '';
-        });
+        setState(() {});
       }
     });
   }
@@ -159,28 +151,76 @@ class _HomePageState extends State<HomePage> {
       onTap: () {},
       child: Container(
         margin: EdgeInsets.only(top: 18, left: 25, right: 25),
-        height: 50,
+        height: 500,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Constants.primaryColor,
             border: Border(bottom: BorderSide(color: Constants.primaryColor))),
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Flexible(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  '',
-                  textScaleFactor: 1.0,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Constants.primaryColor,
-                      fontFamily: 'Gilroy'),
+                child: TextField(
+                  style: TextStyle(color: Constants.secondaryTextColor),
+                  controller: _controllerName,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                      hintText: 'Name',
+                      hintStyle: TextStyle(color: Constants.secondaryTextColor),
+                      fillColor: Constants.secondaryColor),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Flexible(
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: TextField(
+                    style: TextStyle(color: Constants.secondaryTextColor),
+                    controller: _controllerPass,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                        labelStyle:
+                            TextStyle(color: Constants.secondaryTextColor),
+                        hintText: 'Password',
+                        hintStyle: TextStyle(
+                          color: Constants.secondaryTextColor,
+                        ),
+                        fillColor: Constants.secondaryColor)),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: Constants.primaryTextColor,
+                  minimumSize: Size(250, 50),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(),
+                      borderRadius: BorderRadius.circular(30)),
+                  textStyle: TextStyle(fontFamily: 'Gilroy')),
+              onPressed: () {
+                if ((_controllerName.text == Constants.username &&
+                        _controllerPass.text == Constants.password) ||
+                    (_controllerName.text == Constants.username2 &&
+                        _controllerPass.text == Constants.password2)) {
+                  Navigator.pop(context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NavTab()));
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) => (AlertDialog(
+                          title: Text('Email o contraseña incorrectos'))));
+                }
+              },
+              child: Text('Log In'),
             ),
           ],
         ),
